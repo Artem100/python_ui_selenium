@@ -1,8 +1,11 @@
-FROM python
+FROM python:3.8.12-alpine3.14
 
-WORKDIR /project
+RUN pip install --upgrade pip
 
-COPY . .
+RUN adduser -D worker
+USER worker
+WORKDIR /home/worker
 
-CMD RUN pip install --no-cache-dir -r requirements.txt
-CMD pytest test/test_simple.py
+COPY --chown=worker:worker . .
+
+RUN pip install --no-cache-dir -r requirements.txt
