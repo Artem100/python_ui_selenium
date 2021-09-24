@@ -1,0 +1,5 @@
+URL_ENV=https://www.fishingsib.ru/
+
+USEREMAIL=own.inter.9@rambler.ru
+USERNAME=kraber
+PASSWORD=kraber
