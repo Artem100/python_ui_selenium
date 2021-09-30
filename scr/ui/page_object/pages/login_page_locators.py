@@ -6,10 +6,10 @@ from scr.ui.page_object.base_page import BasePage
 class LoginPageLocators(BasePage):
 
     LOGIN_PAGE_URL = "login/"
-    LOGIN_FORM = (By.CSS_SELECTOR, "div.login__auth", "DIALOG CONTAINER")
-    LOGIN_FIELD = (By.CSS_SELECTOR, "div.login__auth input[name='login[login]']", "LOGIN FIELD")
-    PASSWORD_FIELD = (By.CSS_SELECTOR, "div.login__auth input[name='login[password]']", "PASSWORD FIELD")
-    SUBMIT_BUTTON = (By.CSS_SELECTOR, "button#authSubmit", "SUBMIT BUTTON")
+    LOGIN_FORM = (By.CSS_SELECTOR, "table.login_form", "LOGIN FORM")
+    LOGIN_FIELD = (By.CSS_SELECTOR, "input#login_field", "LOGIN FIELD")
+    PASSWORD_FIELD = (By.CSS_SELECTOR, "input#pass_field", "PASSWORD FIELD")
+    SUBMIT_BUTTON = (By.CSS_SELECTOR, "input[name='login_btn']", "SUBMIT BUTTON")
 
 
     def login_page_open(self, url):
@@ -21,13 +21,13 @@ class LoginPageLocators(BasePage):
         return self
 
     def login_field_input(self, value):
-        self._input_text(value)
+        self._input_text(value, *self.LOGIN_FIELD)
         return self
 
     def password_field(self, value):
-        self._input_text(value)
+        self._input_text(value, *self.PASSWORD_FIELD)
         return self
 
-    def sumbit_button_click(self):
+    def submit_button_click(self):
         self._click(*self.SUBMIT_BUTTON)
         return self

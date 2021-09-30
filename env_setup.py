@@ -31,5 +31,5 @@ def env_user_email():
 
 
 ENV_URL = env_run()
-ENV_USER = env_run()
-ENV_PASSWORD = env_run()
+ENV_USER_MAIL = env_user_email()
+ENV_PASSWORD = env_user_password()

@@ -1,5 +1,6 @@
 import allure
 
+from scr.ui.page_object.account_steps import AccountSteps
 from scr.ui.page_object.pages.login_page_locators import LoginPageLocators
 
 
@@ -11,4 +12,4 @@ class LoginPageSteps(LoginPageLocators):
         self.login_form_display()
         self.login_field_input(username)
         self.password_field(password)
-        self.sumbit_button_click()
+        self.submit_button_click()
