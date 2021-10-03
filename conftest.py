@@ -5,6 +5,7 @@ from os.path import dirname, abspath
 
 from faker import Faker
 from selenium import webdriver
+from selenium.webdriver import DesiredCapabilities
 from selenium.webdriver.firefox.options import Options
 
 
@@ -39,7 +40,9 @@ def browser(request):
         fp.set_preference("plugin.disable_full_page_plugin_for_types", "application/pdf")
         fp.set_preference("browser.helperApps.neverAsk.saveToDisk", 'application/pdf,application/x-pdf')
         fp.set_preference("pdfjs.disabled", True)
-        driver = webdriver.Firefox(firefox_profile=fp, options=options)
+        firefox_capabilities = DesiredCapabilities.FIREFOX.copy()
+        firefox_capabilities["pageLoadingStrategy"] = "eager"
+        driver = webdriver.Firefox(firefox_profile=fp, options=options, desired_capabilities=firefox_capabilities)
     elif "remote" in browser_list:
         if "REMOTE_BROWSER_URL" in os.environ:
             REMOTE_BROWSER_URL = os.environ["REMOTE_BROWSER_URL"]
@@ -66,7 +69,7 @@ def browser(request):
         driver = webdriver.Remote(REMOTE_BROWSER_URL, desired_capabilities=capabilities)
         # logging.info(f"Browser {}")
     driver.maximize_window()
-    driver.set_page_load_timeout(20)
+    # driver.set_page_load_timeout(10)
     yield driver
     driver.quit()
 

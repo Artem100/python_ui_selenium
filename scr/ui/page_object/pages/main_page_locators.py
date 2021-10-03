@@ -6,10 +6,10 @@ from scr.ui.page_object.base_page import BasePage
 
 class MainPageLocators(BasePage):
 
-    LOGIN_FORM = (By.CSS_SELECTOR, "form#login_form", "DIALOG CONTAINER")
-    LOGIN_FIELD = (By.CSS_SELECTOR, "input#login", "LOGIN FIELD")
-    PASSWORD_FIELD = (By.CSS_SELECTOR, "input#login_password", "PASSWORD FIELD")
-    SUBMIT_LOGIN_BUTTON = (By.CSS_SELECTOR, "form#login_form button[type='submit']", "SUBMIT LOGIN BUTTON")
+    LOGIN_FORM = (By.CSS_SELECTOR, "form[action='/login']", "LOGIN FORM")
+    LOGIN_FIELD = (By.CSS_SELECTOR, "input[name='login']", "LOGIN FIELD")
+    PASSWORD_FIELD = (By.CSS_SELECTOR, "input[name='pass']", "PASSWORD FIELD")
+    SUBMIT_LOGIN_BUTTON = (By.CSS_SELECTOR, "form[action='/login'] input[type='submit']", "SUBMIT LOGIN BUTTON")
     OPEN_LOGIN_FORM_BUTTON = (By.CSS_SELECTOR, "div#guestAuthFormApp button", "OPEN LOGIN FORM BUTTON")
 
     def main_page_open(self, url):

@@ -21,7 +21,7 @@ class BasePage():
         self.driver = driver
 
     driver = None
-    timeout = 5
+    timeout = 10
 
     def browser_close(self):
         self.driver.quit()
@@ -278,3 +278,17 @@ class BasePage():
             raise AssertionError(f"\nYou ARE NOT on expected page: {expected_url}, \nYou are on the page: {current_url}\n {e}")
         except Exception as e:
             self.__browser_system_error(e)
+
+    def _clear_and_input_text(self, text, *selector):
+        selector, name = format_selector(*selector)
+        with allure.step(f"Input text to element {name}"):
+            element = self.__find_element_located(selector, name)
+            try:
+                logging.info(f"Input text to {name} element")
+                element.clear()
+                element.send_keys(text)
+                return element
+            except (NoSuchElementException, TimeoutException):
+                self.__timeout_element_error(self, name)
+            except Exception as e:
+                self.__browser_system_error(e)
