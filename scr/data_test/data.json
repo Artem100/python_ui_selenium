@@ -1,0 +1,28 @@
+{
+  "qa_env": {
+    "url" : "https://vestnik-sadovoda.ru/forum/",
+    "users": {
+      "main_user": {
+        "email": "flow_234",
+        "password": "Ui34eKdhc",
+        "id": 0
+      },
+      "some_user": {
+        "email": "lalala@rambler.ru",
+        "password": "tetsts",
+        "id": 1
+      }
+    }
+  },
+  "pred_prod_env": {
+    "url": "https://knigilub.ru/",
+    "users": {
+      "main_user": {
+        "email": "own.inter.9@rambler.ru",
+        "username": "hoblala",
+        "id": 0
+      }
+    }
+  }
+
+}

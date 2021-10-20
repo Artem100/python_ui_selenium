@@ -1,12 +1,12 @@
 import allure
 import pytest
 
-import env_setup
+from env_setup import ENV_URL, get_email_user, PASSWORD_USER
 from scr.ui.page_object.account_steps import AccountSteps
 from scr.ui.page_object.login_page_steps import LoginPageSteps
 from scr.ui.page_object.main_page_steps import MainPageSteps
 from scr.ui.page_object.pages.page_elements import PageElements
-from scr.ui.page_object.pages.user_bar_steps import UserBarSteps
+from scr.ui.page_object.user_bar_steps import UserBarSteps
 from scr.ui.page_object.edit_account_steps import EditAccountSteps
 
 
@@ -24,9 +24,9 @@ class TestProfile():
 
         self.interest = faker.word()
 
-        self.main_page.login_to_profile_from_main_page(env_setup.ENV_URL,
-                                                         env_setup.ENV_USER_MAIL,
-                                                         env_setup.ENV_PASSWORD)
+        self.main_page.login_to_profile_from_main_page(ENV_URL,
+                                                       get_email_user,
+                                                       PASSWORD_USER)
         self.user_bar.user_was_login()
         # yield
         # self.account_page.

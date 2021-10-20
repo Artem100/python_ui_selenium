@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 
-from scr.ui.page_object.base_page import BasePage
+from scr.ui.page_object.pages.page_elements import PageElements
 
 
-class AccountPage(BasePage):
+class AccountPage(PageElements):
 
 
     EDIT_PROFILE_BUTTON = (By.CSS_SELECTOR, "div.usr_profile_menu a[href*='editprofile.html']", "EDIT BUTTON")

@@ -5,7 +5,8 @@ import env_setup
 from scr.ui.page_object.login_page_steps import LoginPageSteps
 from scr.ui.page_object.main_page_steps import MainPageSteps
 from scr.ui.page_object.account_steps import AccountSteps
-from scr.ui.page_object.pages.user_bar_steps import UserBarSteps
+from scr.ui.page_object.user_bar_steps import UserBarSteps
+from variable_data import *
 
 
 class TestLogin():
@@ -20,7 +21,7 @@ class TestLogin():
 
     @allure.title("Positive login")
     def test_01(self):
-        self.login_page.login_to_profile_from_login_page(env_setup.ENV_URL,
-                                                         env_setup.ENV_USER_MAIL,
-                                                         env_setup.ENV_PASSWORD)
-        self.user_bar.user_was_login()
+        self.login_page.login_to_profile_from_login_page(url_env,
+                                                         email_main_user,
+                                                         password_user)
+        self.user_bar.profile_button_click()

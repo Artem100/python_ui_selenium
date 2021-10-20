@@ -1,15 +1,16 @@
 from selenium.webdriver.common.by import By
 
 from scr.ui.page_object.base_page import BasePage
+from scr.ui.page_object.pages.page_elements import PageElements
 
 
-class LoginPageLocators(BasePage):
+class LoginPageLocators(PageElements):
 
-    LOGIN_PAGE_URL = "login/"
-    LOGIN_FORM = (By.CSS_SELECTOR, "table.login_form", "LOGIN FORM")
-    LOGIN_FIELD = (By.CSS_SELECTOR, "input#login_field", "LOGIN FIELD")
-    PASSWORD_FIELD = (By.CSS_SELECTOR, "input#pass_field", "PASSWORD FIELD")
-    SUBMIT_BUTTON = (By.CSS_SELECTOR, "input[name='login_btn']", "SUBMIT BUTTON")
+    LOGIN_PAGE_URL = "ucp.php?mode=login"
+    LOGIN_FORM = (By.CSS_SELECTOR, "form#login", "LOGIN FORM")
+    LOGIN_FIELD = (By.CSS_SELECTOR, "input#username", "LOGIN FIELD")
+    PASSWORD_FIELD = (By.CSS_SELECTOR, "input#password", "PASSWORD FIELD")
+    SUBMIT_BUTTON = (By.CSS_SELECTOR, "input[name='login']", "SUBMIT BUTTON")
 
 
     def login_page_open(self, url):

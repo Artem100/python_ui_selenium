@@ -1,10 +1,9 @@
 from selenium.webdriver.common.by import By
 
-from env_setup import ENV_URL
-from scr.ui.page_object.base_page import BasePage
+from scr.ui.page_object.pages.page_elements import PageElements
 
 
-class MainPageLocators(BasePage):
+class MainPageLocators(PageElements):
 
     LOGIN_FORM = (By.CSS_SELECTOR, "form[action='/login']", "LOGIN FORM")
     LOGIN_FIELD = (By.CSS_SELECTOR, "input[name='login']", "LOGIN FIELD")
