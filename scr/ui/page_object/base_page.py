@@ -101,7 +101,7 @@ class BasePage():
         except Exception as e:
             assert False, f"Some problems with browser or element: \n {e}"
 
-    def _element_displayed(self, *selector):
+    def element_displayed(self, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Check  {name} element is visible"):
             try:
@@ -114,7 +114,7 @@ class BasePage():
                 self.__browser_system_error(e)
 
 
-    def _click(self, *selector):
+    def click(self, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Click on element {name}"):
             element = self.__find_element_clickable(selector, name)
@@ -129,7 +129,7 @@ class BasePage():
             except Exception as e:
                 self.__browser_system_error(e)
 
-    def _input_text(self, text, *selector):
+    def input_text(self, text, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Input text to element {name}"):
             element = self.__find_element_located(selector, name)
@@ -157,7 +157,7 @@ class BasePage():
             except Exception as e:
                 self.__browser_system_error(e)
 
-    def _count_of_elements_on_page(self, count, *selector):
+    def count_of_elements_on_page(self, count, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Check count of elements {name}"):
             elements = self.__find_elements_visibility(selector, name)
@@ -173,7 +173,7 @@ class BasePage():
             except Exception as e:
                 self.__browser_system_error(e)
 
-    def _title_page_check(self, page_title):
+    def title_page_check(self, page_title):
         with allure.step(f"Test in *{page_title}*"):
             current_page = self.driver.title
             try:
@@ -195,7 +195,7 @@ class BasePage():
             except Exception as e:
                 self.__browser_system_error(e)
 
-    def _move_to_element(self, *selector):
+    def move_to_element(self, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Check count of elements {name}"):
             logging.info(f"Move to element {name}")
@@ -205,7 +205,7 @@ class BasePage():
             except:
                 raise AssertionError
 
-    def _delete_all_cookies_in_local_storage(self):
+    def delete_all_cookies_in_local_storage(self):
         with allure.step(f"Delete all cookies in local storage"):
             try:
                 logging.info("Delete all cookies in local storage")
@@ -213,7 +213,7 @@ class BasePage():
             except (JavascriptException, WebDriverException):
                 return True
 
-    def _get_text(self, *selector):
+    def get_text(self, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Get text from element {name}"):
             element = self.__find_element_located(selector, name)
@@ -225,7 +225,7 @@ class BasePage():
                 self.__browser_system_error(e)
 
 
-    def _count_of_elements(self, count, *selector):
+    def count_of_elements(self, count, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Check count of < {name} > elements"):
             elements = self.__find_elements_visibility(selector, name)
@@ -236,14 +236,14 @@ class BasePage():
                 logging.info(f"Count value doesn't match with test in element < {name} >.\nActual result: {len(elements)}\nExpected result: {count}")
                 raise AssertionError(f"Count value doesn't match with test in element < {name} >.\nActual result: {len(elements)}\nExpected result: {count}")
 
-    def _get_list_elements(self, *selector):
+    def get_list_elements(self, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Get list {name} elements"):
             logging.info(f"Get list {name} elements")
             elements = self.__find_elements_visibility(selector, name)
             return elements
 
-    def _check_attribute_value_in_element(self, text, *selector):
+    def check_attribute_value_in_element(self, text, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Check value * {text} * is present in attribute of element < {name} >"):
             element = self.__find_element_located(selector, name)
@@ -256,7 +256,7 @@ class BasePage():
             except AssertionError:
                 self.__element_doesnt_contain_expected_value_error(name, text, result)
 
-    def _table_check_value(self, value, column_name, row_number, column_number):
+    def table_check_value(self, value, column_name, row_number, column_number):
         TABLE_COLUMN = (By.CSS_SELECTOR, f"div.table-responsive tbody>tr:nth-child({row_number})>td:nth-child({column_number})", f"COLUMN NAME: {column_name}")
         self._check_text_in_element(value, *TABLE_COLUMN)
         return self
@@ -269,7 +269,7 @@ class BasePage():
         logging.info("Delete cookies from browser")
         self.driver.delete_all_cookies()
 
-    def _check_url_of_page(self, expected_url):
+    def check_url_of_page(self, expected_url):
         try:
             logging.info(f"Check URL of < {expected_url} > page")
             current_url = WebDriverWait(self.driver, BasePage.timeout).until(EC.url_to_be(expected_url))
@@ -279,7 +279,7 @@ class BasePage():
         except Exception as e:
             self.__browser_system_error(e)
 
-    def _clear_and_input_text(self, text, *selector):
+    def clear_and_input_text(self, text, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Input text to element {name}"):
             element = self.__find_element_located(selector, name)

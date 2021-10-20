@@ -5,11 +5,10 @@ from scr.ui.page_object.pages.account_locators import AccountPage
 
 class AccountSteps(AccountPage):
 
-    @allure.step("Go to edit profile")
-    def go_to_edit_profile(self):
-        self.edit_profile_button_click()
+    @allure.step("Edit info at profile")
+    def edit_info_at_profile(self, interest):
+        self.interests_field_input(interest)
 
-    @allure.step("Check info account")
-    def check_info_account_page(self, interests):
-        self.interests_field_check_value(interests)
-        return self
+    @allure.step("Go to profile page")
+    def go_to_profile_page(self):
+        self.profile_section_button_click()

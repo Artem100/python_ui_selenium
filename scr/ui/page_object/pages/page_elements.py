@@ -8,5 +8,5 @@ class PageElements(BasePage):
     SAVE_BUTTON = (By.CSS_SELECTOR, "input#save", "SAVE BUTTON")
 
     def save_button_click(self):
-        self._click(*self.SAVE_BUTTON)
+        self.click(*self.SAVE_BUTTON)
         return self

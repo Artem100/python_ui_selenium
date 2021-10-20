@@ -3,14 +3,14 @@
     "url" : "https://vestnik-sadovoda.ru/forum/",
     "users": {
       "main_user": {
+        "id": 1,
         "email": "flow_234",
-        "password": "Ui34eKdhc",
-        "id": 0
+        "password": "Ui34eKdhc"
       },
       "some_user": {
+        "id": 2,
         "email": "lalala@rambler.ru",
-        "password": "tetsts",
-        "id": 1
+        "password": "tetsts"
       }
     }
   },

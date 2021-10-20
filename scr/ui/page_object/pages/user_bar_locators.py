@@ -8,15 +8,21 @@ class UserBar(PageElements):
 
     LOGOUT_BUTTON = (By.CSS_SELECTOR, "span.logout a", "LOGOUT BUTTON")
     PROFILE_BUTTON = (By.CSS_SELECTOR, "div.header-profile", "PROFILE BUTTON")
+    PERSONAL_SECTION_BUTTON = (By.CSS_SELECTOR, "li#username_logged_in a[title='Личный раздел']", "PERSONAL SECTION BUTTON")
 
     def logout_button_display(self):
-        self._element_displayed(*self.LOGOUT_BUTTON)
+        self.element_displayed(*self.LOGOUT_BUTTON)
         return self
 
     def logout_button_click(self):
-        self._click(*self.LOGOUT_BUTTON)
+        self.click(*self.LOGOUT_BUTTON)
         return self
 
     def profile_button_click(self):
-        self._click(*self.PROFILE_BUTTON)
+        self.click(*self.PROFILE_BUTTON)
+        return self
+
+    def personal_section_button_click(self):
+        self.profile_button_click()
+        self.click(*self.PERSONAL_SECTION_BUTTON)
         return self

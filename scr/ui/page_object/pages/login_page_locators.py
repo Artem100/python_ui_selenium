@@ -18,17 +18,17 @@ class LoginPageLocators(PageElements):
         return self
 
     def login_form_display(self):
-        self._element_displayed(*self.LOGIN_FORM)
+        self.element_displayed(*self.LOGIN_FORM)
         return self
 
     def login_field_input(self, value):
-        self._input_text(value, *self.LOGIN_FIELD)
+        self.input_text(value, *self.LOGIN_FIELD)
         return self
 
     def password_field(self, value):
-        self._input_text(value, *self.PASSWORD_FIELD)
+        self.input_text(value, *self.PASSWORD_FIELD)
         return self
 
     def submit_button_click(self):
-        self._click(*self.SUBMIT_BUTTON)
+        self.click(*self.SUBMIT_BUTTON)
         return self
