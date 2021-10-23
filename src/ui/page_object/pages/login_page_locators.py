@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
-from scr.ui.page_object.base_page import BasePage
-from scr.ui.page_object.pages.page_elements import PageElements
+from src.ui.page_object.base_page import BasePage
+from src.ui.page_object.pages.page_elements import PageElements
 
 
 class LoginPageLocators(PageElements):
@@ -10,7 +10,7 @@ class LoginPageLocators(PageElements):
     LOGIN_FORM = (By.CSS_SELECTOR, "form#login", "LOGIN FORM")
     LOGIN_FIELD = (By.CSS_SELECTOR, "input#username", "LOGIN FIELD")
     PASSWORD_FIELD = (By.CSS_SELECTOR, "input#password", "PASSWORD FIELD")
-    SUBMIT_BUTTON = (By.CSS_SELECTOR, "input[name='login']", "SUBMIT BUTTON")
+    SUBMIT_LOGIN_BUTTON = (By.CSS_SELECTOR, "input[name='login']", "SUBMIT BUTTON")
 
 
     def login_page_open(self, url):
@@ -22,6 +22,7 @@ class LoginPageLocators(PageElements):
         return self
 
     def login_field_input(self, value):
+        self.element_displayed(*self.LOGIN_FIELD)
         self.input_text(value, *self.LOGIN_FIELD)
         return self
 
@@ -29,6 +30,6 @@ class LoginPageLocators(PageElements):
         self.input_text(value, *self.PASSWORD_FIELD)
         return self
 
-    def submit_button_click(self):
-        self.click(*self.SUBMIT_BUTTON)
+    def login_submit_button_click(self):
+        self.click(*self.SUBMIT_LOGIN_BUTTON)
         return self

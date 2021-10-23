@@ -2,10 +2,10 @@ import allure
 import pytest
 
 import env_setup
-from scr.ui.page_object.login_page_steps import LoginPageSteps
-from scr.ui.page_object.main_page_steps import MainPageSteps
-from scr.ui.page_object.account_steps import AccountSteps
-from scr.ui.page_object.user_bar_steps import UserBarSteps
+from src.ui.page_object.login_page_steps import LoginPageSteps
+from src.ui.page_object.main_page_steps import MainPageSteps
+from src.ui.page_object.account_steps import AccountSteps
+from src.ui.page_object.user_bar_steps import UserBarSteps
 from variable_data import *
 
 

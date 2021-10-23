@@ -1,6 +1,6 @@
 import allure
 
-from scr.ui.page_object.pages.user_bar_locators import UserBar
+from src.ui.page_object.pages.user_bar_locators import UserBar
 
 
 class UserBarSteps(UserBar):

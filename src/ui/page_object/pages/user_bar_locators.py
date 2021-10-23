@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 
-from scr.ui.page_object.pages.page_elements import PageElements
+from src.ui.page_object.pages.page_elements import PageElements
 
 
 class UserBar(PageElements):

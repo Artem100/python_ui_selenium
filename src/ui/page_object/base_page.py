@@ -45,7 +45,7 @@ class BasePage():
     def __element_doesnt_contain_expected_value_error(self, name, value, result):
         allure.attach(self.driver.get_screenshot_as_png(), name=f"Element {name} does not contain expected text: {value}",
                       attachment_type=allure.attachment_type.PNG)
-        logging.error(f"Element < {name} > doesn't contain expected value. \nExpected value: {value},\nActual value: {result}")
+        logging.error(f"Element < {name} > doesn't contain expected value. \nExpected value: {value}\nActual value: {result}")
         raise AssertionError(f"Element < {name} > doesn't contain expected value. \nExpected value: {value},\nActual value: {result}")
 
     def __cant_click_on_the_element_error(self, selector, name):
@@ -117,13 +117,15 @@ class BasePage():
     def click(self, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Click on element {name}"):
-            element = self.__find_element_clickable(selector, name)
+            self.__find_element_clickable(selector, name)
             try:
                 logging.info(f"Click {name} element")
+                element = WebDriverWait(self.driver, timeout=self.timeout).until(EC.element_to_be_clickable(selector))
                 element.click()
                 return element
             except ElementClickInterceptedException:
-                self.__cant_click_on_the_element_error(selector, name)
+                logging.info(f"Click {name} element use to JS")
+                self.driver.execute_script("arguments[0].click();", element)
             except (NoSuchElementException, TimeoutException):
                 self.__timeout_element_error(self, name)
             except Exception as e:
@@ -131,10 +133,10 @@ class BasePage():
 
     def input_text(self, text, *selector):
         selector, name = format_selector(*selector)
-        with allure.step(f"Input text to element {name}"):
+        with allure.step(f"Input text: {text} to element {name}"):
             element = self.__find_element_located(selector, name)
             try:
-                logging.info(f"Input text to {name} element")
+                logging.info(f"Input text: *{text}* to {name} element")
                 element.send_keys(text)
                 return element
             except (NoSuchElementException, TimeoutException):
@@ -142,7 +144,7 @@ class BasePage():
             except Exception as e:
                 self.__browser_system_error(e)
 
-    def _check_text_in_element(self, text, *selector):
+    def check_text_in_element(self, text, *selector):
         selector, name = format_selector(*selector)
         with allure.step(f"Check text in element {name}"):
             element = self.__find_element_located(selector, name)
@@ -258,7 +260,7 @@ class BasePage():
 
     def table_check_value(self, value, column_name, row_number, column_number):
         TABLE_COLUMN = (By.CSS_SELECTOR, f"div.table-responsive tbody>tr:nth-child({row_number})>td:nth-child({column_number})", f"COLUMN NAME: {column_name}")
-        self._check_text_in_element(value, *TABLE_COLUMN)
+        self.check_text_in_element(value, *TABLE_COLUMN)
         return self
 
     def get_cookies(self):

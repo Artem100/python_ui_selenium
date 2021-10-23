@@ -2,12 +2,11 @@ import allure
 import pytest
 
 from variable_data import *
-from scr.ui.page_object.account_steps import AccountSteps
-from scr.ui.page_object.login_page_steps import LoginPageSteps
-from scr.ui.page_object.main_page_steps import MainPageSteps
-from scr.ui.page_object.pages.page_elements import PageElements
-from scr.ui.page_object.user_bar_steps import UserBarSteps
-from scr.ui.page_object.account_steps import AccountSteps
+from src.ui.page_object.login_page_steps import LoginPageSteps
+from src.ui.page_object.main_page_steps import MainPageSteps
+from src.ui.page_object.pages.page_elements import PageElements
+from src.ui.page_object.user_bar_steps import UserBarSteps
+from src.ui.page_object.account_steps import AccountSteps
 
 
 class TestProfile():
@@ -34,8 +33,6 @@ class TestProfile():
     @allure.title("Change description at profile")
     def test_02(self):
         self.user_bar.go_to_personal_page()
-        self.account_page.go_to_profile_page()
-        # self.profile_page.interests_field_input(self.interest)
-        # self.page_elements.save_button_click()
-        # self.account_page.at_account_page()
-        # self.account_page.check_info_account_page(self.interest)
+        self.account_page.go_to_profile_section()
+        self.account_page.edit_info_at_profile()
+        self.account_page.check_info_at_profile()

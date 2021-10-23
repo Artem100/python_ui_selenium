@@ -1,7 +1,6 @@
 import allure
 
-from scr.ui.page_object.account_steps import AccountSteps
-from scr.ui.page_object.pages.main_page_locators import MainPageLocators
+from src.ui.page_object.pages.main_page_locators import MainPageLocators
 
 
 class MainPageSteps(MainPageLocators):

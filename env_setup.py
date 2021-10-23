@@ -1,5 +1,5 @@
 import os
-from scr.additional_methods.additional_methods import read_json_file
+from src.additional_methods.additional_methods import read_json_file
 from os.path import dirname, abspath
 from dotenv import load_dotenv
 load_dotenv()

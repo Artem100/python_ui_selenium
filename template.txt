@@ -1,4 +1,4 @@
-URL_ENV=https://www.fishingsib.ru/
+URL_ENV=https://vestnik-sadovoda.ru/forum/
 
 USEREMAIL=own.inter.9@rambler.ru
 USERNAME=kraber
