@@ -1,5 +1,7 @@
 URL_ENV=https://vestnik-sadovoda.ru/forum/
+ENV_TYPE=qa_env
+MAIN_USER=main_user
 
 USEREMAIL=own.inter.9@rambler.ru
-USERNAME=kraber
-PASSWORD=kraber
+USERNAME=kraber123
+PASSWORD=kraber123

@@ -1,3 +1,7 @@
+import logging
+from datetime import datetime
+import pathlib
+
 import pytest
 import os
 from dotenv import load_dotenv
@@ -13,10 +17,28 @@ ROOT_DIR = dirname(abspath(__file__))
 DOWNLOAD_DIR = ROOT_DIR + "//download_files"
 load_dotenv()
 
+
 @pytest.fixture()
 def browser(request):
     browser_list = request.config.getoption("--browser")
     browser_remote = request.config.getoption("--browser")
+    logger = logging.getLogger(__name__)
+    logger.propagate = False
+    logger.setLevel(logging.DEBUG)
+    # Create handlers
+    s_handler = logging.StreamHandler()
+    f_handler = logging.FileHandler(f'{pathlib.Path(__file__).parent.resolve()}\\logs\\output.log')
+    f_handler.setLevel(logging.DEBUG)
+    s_handler.setLevel(logging.DEBUG)
+    # Create formatters and add it to handlers
+    s_format = logging.Formatter('%(levelname)s - %(message)s')
+    # f_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    # f_format = logging.Formatter()
+    s_handler.setFormatter(s_format)
+    # f_handler.setFormatter(f_format)
+    # Add handlers to the logger
+    logger.addHandler(s_handler)
+    logger.addHandler(f_handler)
 
     if 'chrome' in browser_list:
         options = webdriver.ChromeOptions()
@@ -24,6 +46,7 @@ def browser(request):
         options.add_argument("--start-maximized")
         options.add_experimental_option("prefs", preferences)
         capabilities = options.to_capabilities()
+        capabilities['goog:loggingPrefs'] = { 'browser':'ALL' }
         # if jenkins:
         # options.add_argument('--headless')
         #     options.add_argument("--window-size=1920,1080")
@@ -60,7 +83,7 @@ def browser(request):
             REMOTE_BROWSER_VERSION = str(os.getenv("REMOTE_BROWSER_VERSION"))
 
         capabilities = {'browserName': REMOTE_BROWSER_NAME,
-                        "version": "",
+                        "version": REMOTE_BROWSER_VERSION,
                         "enableVnc": True,
                         "enableVideo": True,
                         "enableLog": True
@@ -71,6 +94,14 @@ def browser(request):
     driver.maximize_window()
     # driver.set_page_load_timeout(10)
     yield driver
+    # try:
+    if browser_list == "chrome":
+        for entry in driver.get_log("browser"):
+            time_value = str(entry['timestamp'])
+            ts = float(time_value[0:10]+'.'+time_value[10:13])
+            timestamp = datetime.fromtimestamp(ts).strftime('%H:%M:%S')
+            format_log = f"{timestamp} - {entry['level']} - {entry['message']}"
+            logger.info(format_log)
     driver.quit()
 
 # @pytest.fixture(scope='session')
@@ -79,6 +110,6 @@ def browser(request):
 #     yield cookies
 
 def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="firefox", help="Type of browser: edge, chrome, firefox, remote")
+    parser.addoption("--browser", action="store", default="chrome", help="Type of browser: edge, chrome, firefox, remote")
 
 
