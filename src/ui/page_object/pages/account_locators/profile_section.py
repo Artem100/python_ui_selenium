@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 
-from src.ui.page_object.pages.account_locators.account_root_locators import AccountRootPage
+from src.ui.page_object.pages.account_locators.account_root_locators import AccountRoot
 
 
-class ProfileSectionLocators(AccountRootPage):
+class ProfileSectionLocators(AccountRoot):
 
 
     PERSONAL_INFO_BUTTON_ACIVE = (By.CSS_SELECTOR, "li.active-subsection.active-subsection", "PERSONAL INFO BUTTON ACIVE")
@@ -36,7 +36,7 @@ class ProfileSectionLocators(AccountRootPage):
         return self
 
     def icq_field_input(self, value):
-        self.input_text(value, *self.ICQ_FIELD)
+        self.clear_and_input_text(value, *self.ICQ_FIELD)
         return self
 
     def icq_field_check_value(self, value):

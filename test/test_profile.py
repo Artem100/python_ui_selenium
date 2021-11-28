@@ -1,6 +1,8 @@
 import allure
 import pytest
+from ddt import data
 
+from src.additional_methods.data_provider import getCSVData
 from variable_data import *
 from src.ui.page_object.login_page_steps import LoginPageSteps
 from src.ui.page_object.main_page_steps import MainPageSteps
@@ -32,8 +34,25 @@ class TestProfile():
 
     @allure.title("Change description at profile")
     def test_02(self):
-        pass
-        # self.user_bar.go_to_personal_page()
-        # self.account_page.go_to_profile_section()
-        # self.account_page.edit_info_at_profile()
-        # self.account_page.check_info_at_profile()
+        self.user_bar.go_to_personal_page()
+        self.account_page.go_to_profile_section()
+        self.account_page.edit_info_at_profile()
+        self.account_page.check_info_at_profile()
+
+    @allure.title("Change description at profile with data from csv file")
+    @pytest.mark.parametrize("INTERESTS,OCCUPATION,ICQ,SITE,YAHOO,AOL,LOCATION,FACEBOOK,SKYPE,TWITTER,YOUTUBE", getCSVData())
+    def test_03(self, INTERESTS,OCCUPATION,ICQ,SITE,YAHOO,AOL,LOCATION,FACEBOOK,SKYPE,TWITTER,YOUTUBE):
+        self.user_bar.go_to_personal_page()
+        self.account_page.go_to_profile_section()
+        self.account_page.edit_info_at_profile(interest=INTERESTS,
+                             occupation=OCCUPATION,
+                             icq=ICQ,
+                             site=SITE,
+                             yahoo=YAHOO,
+                             aol=AOL,
+                             location=LOCATION,
+                             facebook=FACEBOOK,
+                             skype=SKYPE,
+                             twitter=TWITTER,
+                             youtube=YOUTUBE)
+        self.account_page.check_info_at_profile()

@@ -23,6 +23,5 @@ class UserBar(PageElements):
         return self
 
     def personal_section_button_click(self):
-        self.profile_button_click()
         self.click(*self.PERSONAL_SECTION_BUTTON)
         return self

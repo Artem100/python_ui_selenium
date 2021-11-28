@@ -110,6 +110,6 @@ def browser(request):
 #     yield cookies
 
 def pytest_addoption(parser):
-    parser.addoption("--browser", action="store", default="chrome", help="Type of browser: edge, chrome, firefox, remote")
+    parser.addoption("--browser", action="store", default="firefox", help="Type of browser: edge, chrome, firefox, remote")
 
 

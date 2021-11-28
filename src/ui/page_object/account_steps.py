@@ -33,7 +33,33 @@ class AccountSteps(ProfileSectionLocators):
         self.submit_button_click()
         self.message_info_check(MESSAGE_TEXT.PROFILE_MESSAGE_TITLE)
 
-                                # MESSAGE_TEXT.PROFILE_MESSAGE_TEXT)
+
+    @allure.step("Edit info at personal info section user to csv file")
+    def edit_info_at_profile_regression(self,
+                             interest=PersonalInfoData.INTERESTS,
+                             occupation=PersonalInfoData.OCCUPATION,
+                             icq=PersonalInfoData.ICQ,
+                             site=PersonalInfoData.SITE,
+                             yahoo=PersonalInfoData.YAHOO,
+                             aol=PersonalInfoData.AOL,
+                             location=PersonalInfoData.LOCATION,
+                             facebook=PersonalInfoData.FACEBOOK,
+                             skype=PersonalInfoData.SKYPE,
+                             twitter=PersonalInfoData.TWITTER,
+                             youtube=PersonalInfoData.YOUTUBE):
+        self.interests_field_input(interest)
+        self.occupation_field_input(occupation)
+        self.icq_field_input(icq)
+        self.website_field_input(site)
+        self.yahoo_field_input(yahoo)
+        self.aol_field_input(aol)
+        self.location_field_input(location)
+        self.facebook_field_input(facebook)
+        self.skype_field_input(skype)
+        self.twitter_field_input(twitter)
+        self.youtube_field_input(youtube)
+        self.submit_button_click()
+        self.message_info_check(MESSAGE_TEXT.PROFILE_MESSAGE_TITLE)
 
     @allure.step("Go to profile page")
     def go_to_profile_section(self):
